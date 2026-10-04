@@ -1,0 +1,129 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-grape: var(--grape);
+  --color-grape-foreground: var(--grape-foreground);
+  --color-tangerine: var(--tangerine);
+  --color-tangerine-foreground: var(--tangerine-foreground);
+  --color-mint: var(--mint);
+  --color-mint-foreground: var(--mint-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-cream: var(--cream);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+:root {
+  --radius: 1.25rem;
+  --font-display: "Sora", sans-serif;
+  --font-body: "Figtree", sans-serif;
+
+  /* Playful premium: cream surfaces, lavender/grape, warm tangerine, dark charcoal ink */
+  --background: oklch(0.965 0.018 90);
+  --foreground: oklch(0.24 0.03 280);
+  --card: oklch(0.99 0.008 95);
+  --card-foreground: oklch(0.24 0.03 280);
+  --popover: oklch(0.99 0.008 95);
+  --popover-foreground: oklch(0.24 0.03 280);
+  --primary: oklch(0.52 0.19 295);
+  --primary-foreground: oklch(0.98 0.01 95);
+  --secondary: oklch(0.92 0.05 295);
+  --secondary-foreground: oklch(0.38 0.12 295);
+  --muted: oklch(0.94 0.015 90);
+  --muted-foreground: oklch(0.52 0.03 285);
+  --accent: oklch(0.93 0.06 60);
+  --accent-foreground: oklch(0.42 0.12 50);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.9 0.02 90);
+  --input: oklch(0.9 0.02 90);
+  --ring: oklch(0.52 0.19 295);
+
+  --grape: oklch(0.55 0.18 295);
+  --grape-foreground: oklch(0.98 0.01 95);
+  --tangerine: oklch(0.75 0.17 55);
+  --tangerine-foreground: oklch(0.25 0.05 50);
+  --mint: oklch(0.85 0.12 155);
+  --mint-foreground: oklch(0.3 0.07 160);
+  --ink: oklch(0.22 0.03 285);
+  --ink-foreground: oklch(0.96 0.015 90);
+  --cream: oklch(0.975 0.02 90);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@utility card-soft {
+  background-color: var(--color-card);
+  border-radius: var(--radius-3xl);
+  box-shadow: 0 2px 12px -4px oklch(0.24 0.03 280 / 8%);
+  border: 1px solid var(--color-border);
+}
+
+@utility blob-float {
+  animation: blob-float 6s ease-in-out infinite;
+}
+
+@keyframes blob-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+@keyframes push-progress {
+  from { width: 0%; }
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40;
+}
+@utility btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-muted disabled:opacity-40;
+}
+@utility field {
+  @apply w-full rounded-xl border border-input bg-card px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring;
+}
